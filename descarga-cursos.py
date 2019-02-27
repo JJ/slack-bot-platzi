@@ -13,4 +13,20 @@ agenda = soup.find_all('script')[25].text
 
 schedule = re.findall( r'scheduleItems: (.+?),\n', agenda )
 datos = json.loads(schedule[0])
-print(json.dumps(datos))
+eventos = {}
+for i in ['agenda_all','agenda_calendar']:
+    for j in datos[i]['agenda_items']:
+        este_dato = datos[i]['agenda_items'][j]
+        eventos[ este_dato['course'] ] = { "comienzo" : este_dato['start_time'],
+                                           "final" : este_dato['end_time'],
+                                           "tipo": este_dato['agenda_item_type'] }
+    print(eventos)
+    for j in datos[i]['agenda_courses']:
+        este_dato = datos[i]['agenda_courses'][j]
+        course= datos[i]['agenda_courses'][j]['id']
+        eventos[course]['titulo'] = este_dato['title']
+        eventos[course]['URL'] = este_dato['url']
+        eventos[course]['lanzamiento'] = este_dato['launch_date']
+
+# Imprime los resultados.
+print(json.dumps(eventos))
