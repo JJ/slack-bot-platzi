@@ -11,3 +11,8 @@ class TestPlatziAgenda(unittest.TestCase):
 
     def test_should_initialize_object_OK(self):
         self.assertIsInstance(self.agenda,PlatziAgenda, "Objeto creado correctamente")
+
+    def test_should_return_first_course(self):
+        curso = self.agenda.siguiente()
+        self.assertIsInstance( curso, dict, "Extraido primer curso" )
+        self.assertNotEqual( curso['titulo'], "", "Titulo existe" )
