@@ -11,8 +11,17 @@ class TestPlatziAgenda(unittest.TestCase):
 
     def test_should_initialize_object_OK(self):
         self.assertIsInstance(self.agenda,PlatziAgenda, "Objeto creado correctamente")
+        codigos = self.agenda.codigos()
+        self.assertIsNotNone(codigos, "Hay cursos" )
+        self.assertIsNotNone(self.agenda.curso( codigos[0] ), "Primer curso OK")
 
     def test_should_return_first_course(self):
         curso = self.agenda.siguiente()
         self.assertIsInstance( curso, dict, "Extraido primer curso" )
         self.assertNotEqual( curso['titulo'], "", "Titulo existe" )
+
+        
+
+#    def test_should_return_search_result(self):
+#        print(self.agenda.busca("Curso"))
+#        self.assertIsNotNone( self.agenda.busca("Curso"), "Hay algún curso")

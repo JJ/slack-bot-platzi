@@ -1,4 +1,4 @@
-import os, json
+import os, json, re
 
 class PlatziAgenda:
     """Una clase para contener los elementos de la agenda de la web de Platzi"""
@@ -14,6 +14,15 @@ class PlatziAgenda:
 
     def siguiente(self):
         return self.agenda[self.primero]
+
+    def codigos(self):
+        return list(self.agenda.keys())
+
+    def curso(self, codigo ):
+        return self.agenda[codigo]
+    
+    def busca(self, aguja ):
+        {k: v for k, v in self.agenda.items() if v['titulo'].find( aguja )}
 
 
 
