@@ -20,7 +20,6 @@ for i in ['agenda_all','agenda_calendar']:
         eventos[ este_dato['course'] ] = { "comienzo" : este_dato['start_time'],
                                            "final" : este_dato['end_time'],
                                            "tipo": este_dato['agenda_item_type'] }
-    print(eventos)
     for j in datos[i]['agenda_courses']:
         este_dato = datos[i]['agenda_courses'][j]
         course= datos[i]['agenda_courses'][j]['id']
