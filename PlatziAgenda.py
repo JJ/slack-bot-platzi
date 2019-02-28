@@ -10,6 +10,10 @@ class PlatziAgenda:
 
         with open(data_file) as f:
             self.agenda = json.load(f)
+            self.primero = sorted(self.agenda.keys())[0]
+
+    def siguiente(self):
+        return self.agenda[self.primero]
 
 
 
