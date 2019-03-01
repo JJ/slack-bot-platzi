@@ -15,7 +15,6 @@ load_dotenv()
 print( os.environ.get('BOT_FICHA') )
 slack_client = SlackClient(os.environ.get('BOT_FICHA'))
 starterbot_id = None
-print(slack_client)
 
 RTM_READ_DELAY = 1 # 1 second delay between reading from RTM
 ORDEN_EJEMPLO = "ve"
