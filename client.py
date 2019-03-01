@@ -53,6 +53,12 @@ def maneja_comando(comando, canal):
         agenda = PlatziAgenda()
         siguiente = agenda.siguiente()
         response = "El siguiente curso es *{}*".format(siguiente['titulo'])
+    elif comando.startswith('busca'):
+        agenda = PlatziAgenda()
+        resultado = agenda.busca( comando[6:] )
+        response = "Tenemos los siguientes cursos\n"
+        for i in resultado:
+            response = response + "→ " + resultado[i]['titulo']+"\n"
 
     slack_client.api_call(
         "chat.postMessage",
