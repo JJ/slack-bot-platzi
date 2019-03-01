@@ -7,6 +7,7 @@ import os
 import time
 import re
 from slackclient import SlackClient
+from PlatziAgenda import PlatziAgenda
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -48,6 +49,10 @@ def maneja_comando(comando, canal):
     response = None
     if comando.startswith(ORDEN_EJEMPLO):
         response = "Por lo pronto vas bien"
+    elif comando.startswith('siguiente'):
+        agenda = PlatziAgenda()
+        siguiente = agenda.siguiente()
+        response = "El siguiente curso es *{}*".format(siguiente['titulo'])
 
     slack_client.api_call(
         "chat.postMessage",
