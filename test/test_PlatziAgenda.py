@@ -20,8 +20,7 @@ class TestPlatziAgenda(unittest.TestCase):
         self.assertIsInstance( curso, dict, "Extraido primer curso" )
         self.assertNotEqual( curso['titulo'], "", "Titulo existe" )
 
-        
-
-#    def test_should_return_search_result(self):
-#        print(self.agenda.busca("Curso"))
-#        self.assertIsNotNone( self.agenda.busca("Curso"), "Hay algún curso")
+    def test_should_return_search_result(self):
+        cursos = self.agenda.busca("Curso")
+        self.assertIsNotNone( cursos, "Hay algún curso")
+        self.assertIn( 'title', cursos[0], 'El curso tiene título' )
