@@ -23,4 +23,4 @@ class TestPlatziAgenda(unittest.TestCase):
     def test_should_return_search_result(self):
         cursos = self.agenda.busca("Curso")
         self.assertIsNotNone( cursos, "Hay algún curso")
-        self.assertIn( 'title', cursos[0], 'El curso tiene título' )
+        self.assertIn( 'titulo', cursos[list(cursos.keys())[0]], 'El curso tiene título' )
