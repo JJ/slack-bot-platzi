@@ -17,3 +17,9 @@ class TestSlackComandos(unittest.TestCase):
         self.comandos.nuevo( "Hola", hola )
         self.assertEqual( self.comandos.todos()['Hola'], hola, "Comando añadido" )
 
+    def test_should_handle_command(self):
+        hola_mundo =  lambda x: "Hola " + x
+        self.comandos.nuevo( "HolaMundo", hola_mundo )
+        self.assertEqual( self.comandos.maneja( "HolaMundo Hey"), "Hola Hey", "Manejando comandos")
+        with self.assertRaises( KeyError ) as context:
+            self.comandos.maneja("Que no")
