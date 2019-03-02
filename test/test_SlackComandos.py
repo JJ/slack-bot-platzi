@@ -16,6 +16,8 @@ class TestSlackComandos(unittest.TestCase):
         hola = lambda x: "Hola"
         self.comandos.nuevo( "Hola", hola )
         self.assertEqual( self.comandos.todos()['Hola'], hola, "Comando añadido" )
+        self.comandos.nuevo( "Hola", hola )
+        self.assertEqual( self.comandos.todos()['Hola'], hola, "Comando no añadido" )
 
     def test_should_handle_command(self):
         hola_mundo =  lambda x: "Hola " + x

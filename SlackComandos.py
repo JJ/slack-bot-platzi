@@ -8,8 +8,9 @@ class SlackComandos:
         self.comandos_str = ()
         
     def nuevo( self, comando, funcion ):
-        self.comandos[comando] = funcion
-        self.comandos_str = list (self.comandos.keys())
+        if not comando in self.comandos:
+            self.comandos[comando] = funcion
+            self.comandos_str = list (self.comandos.keys())
         
     def todos( self ):
         return self.comandos
