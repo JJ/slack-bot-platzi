@@ -8,17 +8,39 @@ import time
 import re
 from slackclient import SlackClient
 from PlatziAgenda import PlatziAgenda
+from SlackComandos import SlackComandos
+
+from PlatziSlack import PlatziSlackComando
 
 from dotenv import load_dotenv
 load_dotenv()
 
-print( os.environ.get('BOT_FICHA') )
 slack_client = SlackClient(os.environ.get('BOT_FICHA'))
 starterbot_id = None
 
 RTM_READ_DELAY = 1 # 1 second delay between reading from RTM
-ORDEN_EJEMPLO = "ve"
 MENCION_REGEX = "^<@(|[WU].+?)>(.*)"
+
+# Define los comandos
+comandos = SlackComandos()
+
+def ve(*args):
+    return "Por lo pronto vas bien"
+
+def siguiente(agenda,*args):
+    siguiente = agenda.siguiente()
+    return "El siguiente curso es *{}*".format(siguiente['titulo'])
+
+def busca(agenda, argumento ):
+    resultado = agenda.busca( argumento )
+    response = "Tenemos los siguientes cursos\n"
+    for i in resultado:
+        response = response + "→ " + resultado[i]['titulo']+"\n"
+    return response
+
+PlatziSlackComando( comandos, "ve", ve )
+PlatziSlackComando( comandos, "siguiente", siguiente )
+PlatziSlackComando( comandos, "busca", busca )
 
 def procesa_comandos(eventos):
     """
@@ -43,21 +65,9 @@ def maneja_comando(comando, canal):
         Ejecuta el comando si se conoce.
     """
     # Default response is help text for the user
-    default_response = "No te entiendo. Prueba *{}*.".format(ORDEN_EJEMPLO)
+    default_response = "No te entiendo. Prueba *ve*."
 
-    response = None
-    if comando.startswith(ORDEN_EJEMPLO):
-        response = "Por lo pronto vas bien"
-    elif comando.startswith('siguiente'):
-        agenda = PlatziAgenda()
-        siguiente = agenda.siguiente()
-        response = "El siguiente curso es *{}*".format(siguiente['titulo'])
-    elif comando.startswith('busca'):
-        agenda = PlatziAgenda()
-        resultado = agenda.busca( comando[6:] )
-        response = "Tenemos los siguientes cursos\n"
-        for i in resultado:
-            response = response + "→ " + resultado[i]['titulo']+"\n"
+    response = comandos.maneja( comando )
 
     slack_client.api_call(
         "chat.postMessage",

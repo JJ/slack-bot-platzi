@@ -18,13 +18,15 @@ class SlackComandos:
     def maneja( self, mensaje ):
         este_comando = ''
         for c in self.comandos_str:
-            if mensaje.startswith( c + " " ):
+            if mensaje.startswith( c ):
                 este_comando = c
                 break
         if este_comando == '':
             raise KeyError( "No se encuentra ningún comando en {}".format(mensaje) )
-        
-        argumentos = mensaje[ 1+len(este_comando): ]
+
+        argumentos = ''
+        if len(mensaje) > len(este_comando):
+            argumentos = mensaje[ 1+len(este_comando): ]
         return self.comandos[este_comando](argumentos )
 
 
