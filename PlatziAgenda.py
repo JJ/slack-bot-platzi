@@ -4,7 +4,7 @@ class PlatziAgenda:
     """Una clase para contener los elementos de la agenda de la web de Platzi"""
 
     def __init__ (self,  data_file = "data/cursos.json"):
-        
+
         if not os.path.exists( data_file ):
             data_file = "../" + data_file
 
@@ -20,7 +20,7 @@ class PlatziAgenda:
 
     def curso(self, codigo ):
         return self.agenda[codigo]
-    
+ 
     def busca(self, aguja ):
         return {k: v for k, v in self.agenda.items() if v['titulo'].find( aguja ) >= 0 } or "No lo encuentro"
 
