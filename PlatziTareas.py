@@ -12,4 +12,4 @@ app = Celery('platzi-tareas',
 @app.task
 def siguiente():
     agenda = PlatziAgenda()
-    return agenda.siguiente
+    return agenda.siguiente()
