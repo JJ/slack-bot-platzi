@@ -122,3 +122,5 @@ dmypy.json
 
 playbook.retry
 .vagrant/
+
+*.db
