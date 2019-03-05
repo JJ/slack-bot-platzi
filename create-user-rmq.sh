@@ -2,6 +2,7 @@
 
 
 RABBITMQ_NODENAME=platzi
+RABBITMQ_USE_LONGNAME=true
 RMQ_PASS=`date +%s | sha256sum | base64 | head -c 32`       # Clave aleatoria
 echo RMQ_PASS=$RMQ_PASS > .env
 rabbitmq-server start -detached                             # Arranca el servidor
