@@ -9,8 +9,7 @@ import json
 load_dotenv()
 
 app = Celery('slack-store',
-             broker='amqp://platzi:{}@localhost/platzi'.format(os.environ.get('RMQ_PASS')),
-             backend='amqp://platzi:{}@localhost/platzi'.format(os.environ.get('RMQ_PASS')))
+             broker='amqp://platzi:{}@localhost/platzi'.format(os.environ.get('RMQ_PASS')))
 
 now = datetime.datetime.now()
 registro = sqlite3.connect("registro-{}-{}-{}-{}-{}.db".format(now.year,now.month, now.day, now.hour, now.minute))

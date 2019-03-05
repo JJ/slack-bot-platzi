@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # Adaptado de https://www.fullstackpython.com/blog/build-first-slack-bot-python.html
-# Debe tener licencia libre
+# Con licencia libre
 
 # Comenzar previamente con
 #    celery -A PlatziTareas worker --loglevel=info
@@ -17,7 +17,7 @@ load_dotenv()
 slack_client = SlackClient(os.environ.get('BOT_FICHA'))
 starterbot_id = None
 
-RTM_READ_DELAY = 1 # 1 second delay between reading from RTM
+RTM_READ_DELAY = 1 # Retraso entre lecturas del API de mensajería en tiempo real
 
 def procesa_comandos(eventos):
     """
