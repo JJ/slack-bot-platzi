@@ -12,14 +12,14 @@ class Conexion:
     
     def __init__( self, dotenv_path=".env" ):
         load_dotenv(dotenv_path=dotenv_path)
-        credentials = pika.PlainCredentials('platzi', os.environ.get('RMQ_PASS'))
+        credentials = pika.PlainCredentials(os.environ.get('TEST_USER'), os.environ.get('TEST_PASS'))
 
-        parameters= pika.URLParameters('amqp://platzi:{}@localhost:5672/platzi'.format(os.environ.get('RMQ_PASS')))
+        parameters= pika.URLParameters('amqp://{}:{}@localhost:5672/platziv'.format(os.environ.get('TEST_USER'),os.environ.get('TEST_PASS')))
 
         self.enlace = pika.BlockingConnection( parameters )
 
         self.canal = self.enlace.channel()
 
-        self.canal.queue_declare(queue='platzi')
+        self.canal.queue_declare(queue='platziq')
 
     
