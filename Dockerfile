@@ -10,5 +10,7 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 RUN useradd -ms /bin/bash app
 WORKDIR /home/app
 ADD create-user-rmq.sh cliente-con-celery.py PlatziAgenda.py PlatziTareas.py SlackComandos.py PlatziSlack.py ./
+RUN mkdir data
+ADD data/cursos.json data/cursos.json
 
-CMD ./create-user-rmq.sh $RMQ_PASS && celery -A PlatziTareas worker --loglevel=debug
+CMD ./create-user-rmq.sh $RMQ_PASS && celery -A PlatziTareas worker --loglevel=debug & ./cliente-con-celery.py
