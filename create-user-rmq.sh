@@ -3,10 +3,10 @@
 
 RABBITMQ_NODENAME=platzi
 rabbitmq-server start -detached                             # Arranca el servidor
-rabbitmqctl status                                          # Arranca app
-sleep 2
-rabbitmqctl start_app                    # Arranca app
+sleep 2                                                     # Necesario para lo siguiente
+rabbitmqctl start_app                                       # Arranca app
 echo "Arrancada aplicación"
+echo $1
 rabbitmqctl add_user platzi $1                              # Cambiar a una clave determinada
 rabbitmqctl add_vhost platzi                                # Host virtual que vamos a usar
 rabbitmqctl set_permissions -p platzi platzi ".*" ".*" ".*" # Permisos del usuario sobre el vhost
