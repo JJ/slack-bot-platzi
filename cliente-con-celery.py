@@ -70,8 +70,11 @@ def maneja_comando(comando, canal):
     """
     # Default response is help text for the user
     default_response = "No te entiendo. Prueba *ve*."
-
-    response = comandos.maneja( comando )
+    response=""
+    try:
+        response = comandos.maneja( comando )
+    except KeyError as fallo:
+        print( "Error: {}. Usamos mensaje por omisión".format(fallo) )
 
     slack_client.api_call(
         "chat.postMessage",
