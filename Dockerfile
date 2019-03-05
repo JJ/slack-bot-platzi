@@ -7,7 +7,6 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1\
 ADD requirements.txt ./
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-RUN useradd -ms /bin/bash app
 WORKDIR /home/app
 ADD create-user-rmq.sh cliente-con-celery.py PlatziAgenda.py PlatziTareas.py SlackComandos.py PlatziSlack.py ./
 RUN mkdir data
