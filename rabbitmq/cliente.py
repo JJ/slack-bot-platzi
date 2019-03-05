@@ -3,7 +3,7 @@
 import pika
 import os
 from dotenv import load_dotenv
-load_dotenv(dotenv_path='..')
+load_dotenv(dotenv_path='../.env')
 credentials = pika.PlainCredentials('platzi', os.environ.get('RMQ_PASS'))
 
 parameters= pika.URLParameters('amqp://platzi:{}@localhost:5672/platzi'.format(os.environ.get('RMQ_PASS')))
