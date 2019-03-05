@@ -1,22 +1,16 @@
 #!/usr/bin/env python
 
-import pika
-import os
-from dotenv import load_dotenv
-load_dotenv(dotenv_path='../.env')
-credentials = pika.PlainCredentials('platzi', os.environ.get('RMQ_PASS'))
+from Conexion import Conexion
 
-parameters= pika.URLParameters('amqp://platzi:{}@localhost:5672/platzi'.format(os.environ.get('RMQ_PASS')))
+conexion = Conexion('../.env')
 
-connection = pika.BlockingConnection( parameters )
+enlace = conexion.enlace
 
-channel = connection.channel()
+canal = conexion.canal
 
-channel.queue_declare(queue='platzi')
-
-channel.basic_publish(exchange='',
-                      routing_key='platzi',
-                      body='Descarga')
+canal.basic_publish(exchange='',
+                    routing_key='platzi',
+                    body='Descarga')
 
 print(" [x] Solicitada descarga")
-connection.close()
+enlace.close()
