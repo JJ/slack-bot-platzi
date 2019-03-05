@@ -2,13 +2,14 @@ import os
 from PlatziAgenda import PlatziAgenda
 from celery import Celery,task
 from dotenv import load_dotenv
+import socket
 
 
 load_dotenv()
-
-app = Celery('platzi-tareas',
-             broker='amqp://platzi:{}@localhost/platzi'.format(os.environ.get('RMQ_PASS')),
-             backend='amqp://platzi:{}@localhost/platzi'.format(os.environ.get('RMQ_PASS')))
+hostname = socket.gethostname()
+url = 'amqp://platzi:{}@{}/platzi'.format(os.environ.get('RMQ_PASS'),hostname)
+print( url )
+app = Celery('platzi-tareas', broker=url, backend=url )
 
 @app.task
 def siguiente():
