@@ -10,7 +10,7 @@ import os
 import time
 import re
 from slackclient import SlackClient
-from SlackStore import registra
+from SlackStore import registra # Uso (encapsulado) de Celery
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -24,8 +24,8 @@ def procesa_comandos(eventos):
        Procesa una lista de comandos y devuelve orden y canal, o bien None,None
     """
     for evento in eventos:
-        registra.delay(evento)
-
+#        registra.delay(evento) # Creando una llamada para Celery
+        registra.apply_async( [ evento ] ) 
 
 if __name__ == "__main__":
     if slack_client.rtm_connect(with_team_state=False):
