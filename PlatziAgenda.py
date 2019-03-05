@@ -22,7 +22,16 @@ class PlatziAgenda:
         return self.agenda[codigo]
  
     def busca(self, aguja ):
-        return {k: v for k, v in self.agenda.items() if v['titulo'].find( aguja ) >= 0 } or "No lo encuentro"
+        resultado = {}
+        for k, v in self.agenda.items():
+            if v['titulo'].find( aguja ) >= 0:
+                resultado[k]= v
+
+        if not resultado:
+            resultado = { "Encontrado": None }
+
+        return resultado
+    
 
 
 
