@@ -18,6 +18,9 @@ from PlatziSlack import PlatziSlackComando
 from dotenv import load_dotenv
 load_dotenv()
 
+if os.environ.get('BOT_FICHA') is None:
+    sys.exit("Necesito la ficha para conexión")
+    
 slack_client = SlackClient(os.environ.get('BOT_FICHA'))
 starterbot_id = None
 
