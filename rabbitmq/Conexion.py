@@ -12,7 +12,6 @@ class Conexion:
     
     def __init__( self, dotenv_path=".env" ):
         load_dotenv(dotenv_path=dotenv_path)
-        credentials = pika.PlainCredentials(os.environ.get('TEST_USER'), os.environ.get('TEST_PASS'))
 
         parameters= pika.URLParameters('amqp://{}:{}@localhost:5672/platziv'.format(os.environ.get('TEST_USER'),os.environ.get('TEST_PASS')))
 
