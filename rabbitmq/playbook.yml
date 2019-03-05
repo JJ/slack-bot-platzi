@@ -38,3 +38,17 @@
         name: rabbitmq-server
         state: present
         update_cache: yes
+
+    - name: Descarga get-pip.py
+      get_url: url=https://bootstrap.pypa.io/get-pip.py dest=/tmp/get-pip.py
+
+    - name: Instala pip
+      become: yes
+      command: "python get-pip.py pip==19.0"
+      args:
+        chdir: /tmp
+
+    - name: Instala Celery
+      become: yes
+      pip:
+        name: celery
