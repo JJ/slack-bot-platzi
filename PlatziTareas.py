@@ -8,7 +8,6 @@ import socket
 load_dotenv()
 hostname = socket.gethostname()
 url = 'amqp://platzi:{}@{}/platzi'.format(os.environ.get('RMQ_PASS'),hostname)
-print( url )
 app = Celery('platzi-tareas', broker=url, backend=url )
 
 @app.task
