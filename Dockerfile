@@ -13,4 +13,4 @@ ADD create-user-rmq.sh cliente-con-celery.py PlatziAgenda.py PlatziTareas.py Sla
 RUN mkdir data
 ADD data/cursos.json data/cursos.json
 
-CMD ./create-user-rmq.sh $RMQ_PASS && celery -A PlatziTareas worker --loglevel=debug & ./cliente-con-celery.py
+CMD ./create-user-rmq.sh && celery -A PlatziTareas worker --loglevel=debug & ./cliente-con-celery.py
