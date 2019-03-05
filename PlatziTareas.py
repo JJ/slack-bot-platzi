@@ -20,11 +20,11 @@ def busca( argumento ):
     agenda = PlatziAgenda()
     resultado = agenda.busca( argumento )
     response = ""
-    if resultado: 
+    if not "Encontrado" in resultado: 
         response = "Tenemos los siguientes cursos\n"
         for i in resultado:
             response = response + "→ " + resultado[i]['titulo']+"\n"
-
     else:
-        response = "No hemos encontrado ningún curso con *{}*".format( argumento )    
+        response = "Lo siento: no hay ningún curso con *{}*\n".format(argumento)
+
     return response
