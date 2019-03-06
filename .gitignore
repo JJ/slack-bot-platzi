@@ -124,3 +124,6 @@ playbook.retry
 .vagrant/
 
 *.db
+
+package-lock.json
+node_modules
