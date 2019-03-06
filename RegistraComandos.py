@@ -37,6 +37,4 @@ def registra(comando):
             pass
         finally:
             break
-    else:
-        with connection:
-            connection.execute(sql)  
+
