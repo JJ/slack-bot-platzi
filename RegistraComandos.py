@@ -1,5 +1,5 @@
 import os
-from celery import Celery,task
+from celery import Celery,shared_task
 from dotenv import load_dotenv
 import datetime
 import sqlite3
@@ -16,7 +16,7 @@ registro = sqlite3.connect("comandos-{}-{}-{}-{}-{}.db".format(now.year,now.mont
 registro.execute('''CREATE TABLE  IF NOT EXISTS registro
                     (repeticiones INT, comando VARCHAR(32) unique )''')
 
-@app.task
+@shared_task
 def registra(comando):
     print(json.dumps(comando))
     cuantos=0
