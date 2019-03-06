@@ -4,7 +4,6 @@ var url = 'amqp://platzi:' + process.env.RMQ_PASS + "@localhost:5672/platzi";
 var celery = require('node-celery'),
 	client = celery.createClient({
 		CELERY_BROKER_URL: url,
-		CELERY_RESULT_BACKEND: url
 	});
 
 client.on('error', function(err) {
