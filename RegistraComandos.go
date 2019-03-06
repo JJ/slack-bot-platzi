@@ -28,7 +28,7 @@ func main() {
 	celeryClient, _ := gocelery.NewCeleryClient(celeryBroker, celeryBackend, 1)
 
 	// Registra la función
-	celeryClient.Register("worker.registra", registra)
+	celeryClient.Register("tasks.registra", registra)
 
 	// Arranca el worker
 	fmt.Println( "Arranca el worker" )
