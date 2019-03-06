@@ -27,7 +27,6 @@ def registra(evento):
     else:
         mensaje = "Info → {}".format( evento['type'] )
 
-    print("INSERT INTO mensajes VALUES( {},{} )".format( datetime.datetime.now(), mensaje ))
     for x in range(0,30):
         try:
             with registro:
@@ -40,3 +39,11 @@ def registra(evento):
     else:
         with connection:
             connection.execute(sql)  
+
+@app.task
+def cuantos(quien):
+    print("Quien : ", quien)
+    with registro:
+        resultado = registro.execute( "select COUNT(*) from mensajes where texto like \"Mensaje B → %{}%\"".format( quien ) ).fetchall()
+        print("Buscando ", quien, " → ", resultado)
+        return resultado
