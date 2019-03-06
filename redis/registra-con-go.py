@@ -4,7 +4,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 app = Celery('tasks',
-             broker='amqp://platzi:{}@localhost/platzi'.format(os.environ.get('RMQ_PASS')))
+             broker='redis://localhost:6379',
+             backend='redis://localhost:6379')
 
 if __name__ == '__main__':
     ordenes =['tres', 'uno','uno','uno','dos','dos', 'tres']

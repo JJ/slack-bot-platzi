@@ -2,7 +2,6 @@ package main
 // Estructura de https://github.com/gocelery/gocelery
 
 import (
-	"os"
 	"fmt"
 	"time"
 	"github.com/gocelery/gocelery"
@@ -18,11 +17,8 @@ func registra(comando string) {
 
 func main() {
 	// Crea el broker y el backend
-	fmt.Println(os.Getenv("RMQ_PASS"))
-	url := fmt.Sprintf("amqp://platzi:%s@localhost/platzi",os.Getenv("RMQ_PASS"))
-	fmt.Println(url)
-	celeryBroker := gocelery.NewAMQPCeleryBroker(url)
-	celeryBackend := gocelery.NewAMQPCeleryBackend(url)
+	celeryBroker := gocelery.NewRedisCeleryBroker("redis://")
+	celeryBackend := gocelery.NewRedisCeleryBackend("redis://")
 
 	// Usa dos workers
 	celeryClient, _ := gocelery.NewCeleryClient(celeryBroker, celeryBackend, 1)
