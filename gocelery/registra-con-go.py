@@ -6,6 +6,7 @@ load_dotenv()
 app = Celery('tasks',
              broker='amqp://platzi:{}@localhost/platzi'.format(os.environ.get('RMQ_PASS')))
 
+task_protocol=1
 if __name__ == '__main__':
     ordenes =['tres', 'uno','uno','uno','dos','dos', 'tres']
     for i in ordenes:
