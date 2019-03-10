@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+    Descarga los cursos de la página y los imprime en JSON en la salida estándar
+"""
+
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import pprint
@@ -9,7 +13,8 @@ import re
 pp = pprint.PrettyPrinter(indent=4)
 page = urlopen('http://platzi.com/agenda').read()
 soup = BeautifulSoup( page, "lxml" )
-agenda = soup.find_all('script')[25].text
+
+agenda = soup.find_all('script')[26].text # Cambia algunas veces...
 
 schedule = re.findall( r'scheduleItems: (.+?),\n', agenda )
 datos = json.loads(schedule[0])
