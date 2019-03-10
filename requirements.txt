@@ -1,3 +1,4 @@
+pytest
 slackclient
 python-dotenv
 celery
