@@ -13,6 +13,7 @@ class Conexion:
     def __init__( self, dotenv_path=".env" ):
         load_dotenv(dotenv_path=dotenv_path)
 
+        # Crear previamente el vhost, usuario con clave
         parameters= pika.URLParameters('amqp://{}:{}@localhost:5672/platziv'.format(os.environ.get('TEST_USER'),os.environ.get('TEST_PASS')))
 
         self.enlace = pika.BlockingConnection( parameters )
