@@ -1,0 +1,4 @@
+slackclient
+python-dotenv
+celery
+redis
