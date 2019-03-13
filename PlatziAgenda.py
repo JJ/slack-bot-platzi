@@ -20,7 +20,7 @@ class PlatziAgenda:
 
     def curso(self, codigo ):
         return self.agenda[codigo]
- 
+
     def busca(self, aguja ):
         resultado = {}
         for k, v in self.agenda.items():
@@ -31,7 +31,7 @@ class PlatziAgenda:
             resultado = { "Encontrado": None }
 
         return resultado
-    
+
 
 
 
