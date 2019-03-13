@@ -24,7 +24,7 @@ class PlatziAgenda:
     def busca(self, aguja ):
         resultado = {}
         for k, v in self.agenda.items():
-            if v['titulo'].find( aguja ) >= 0:
+            if v['titulo'].lower().find( aguja.lower() ) >= 0:
                 resultado[k]= v
 
         if not resultado:

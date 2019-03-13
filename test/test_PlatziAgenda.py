@@ -25,3 +25,4 @@ class TestPlatziAgenda(unittest.TestCase):
         self.assertIsNotNone( cursos, "Hay algún curso")
         self.assertIn( 'titulo', cursos[list(cursos.keys())[0]], 'El curso tiene título' )
         self.assertEqual( self.agenda.busca("xyz"), { "Encontrado": None }, "Devuelve mensaje correcto")
+        self.assertNotEqual( self.agenda.busca("curso"), "", "Hay algún curso" )
