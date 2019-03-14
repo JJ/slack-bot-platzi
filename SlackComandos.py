@@ -6,12 +6,12 @@ class SlackComandos:
     def __init__ (self):
         self.comandos = {}
         self.comandos_str = ()
-        
+
     def nuevo( self, comando, funcion ):
         if not comando in self.comandos:
             self.comandos[comando] = funcion
             self.comandos_str = list (self.comandos.keys())
-        
+
     def todos( self ):
         return self.comandos
 
