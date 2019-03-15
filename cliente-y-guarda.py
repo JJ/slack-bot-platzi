@@ -24,7 +24,7 @@ def procesa_comandos(eventos):
        Procesa una lista de comandos y devuelve orden y canal, o bien None,None
     """
     for evento in eventos:
-#        registra.delay(evento) # Creando una llamada para Celery
+        print(evento)
         registra.apply_async( [ evento ] ) 
 
 if __name__ == "__main__":
