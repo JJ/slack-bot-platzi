@@ -5,13 +5,14 @@
 """
 
 from bs4 import BeautifulSoup
-from urllib.request import urlopen
+from urllib.request import Request,urlopen
 import pprint
 import json
 import re
 
 pp = pprint.PrettyPrinter(indent=4)
-page = urlopen('https://platzi.com/agenda').read()
+req = Request('https://platzi.com/agenda',headers={'User-Agent': 'Mozilla/63.0'})
+page = urlopen(req).read()
 soup = BeautifulSoup( page, "lxml" )
 
 agenda = soup.find_all('script')[26].text # Cambia algunas veces...
