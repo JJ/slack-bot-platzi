@@ -11,7 +11,7 @@ import json
 import re
 
 pp = pprint.PrettyPrinter(indent=4)
-page = urlopen('http://platzi.com/agenda').read()
+page = urlopen('https://platzi.com/agenda').read()
 soup = BeautifulSoup( page, "lxml" )
 
 agenda = soup.find_all('script')[26].text # Cambia algunas veces...
